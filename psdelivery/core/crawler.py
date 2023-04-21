@@ -5,6 +5,7 @@ from abc import ABCMeta, abstractmethod
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.remote.webelement import WebElement
 from webdriver_manager.chrome import ChromeDriverManager
 
 from psdelivery.core.option import DefaultCrawlerOption, CrawlerOption
@@ -42,34 +43,37 @@ class ProblemCrawler(metaclass=ABCMeta):
             self.driver.quit()
 
     @abstractmethod
-    def access_to_problem_list(self, *args, **kwargs):
+    def access_to_problem_list(self):
         """
         문제 리스트를 가져오기 전의 작업
         """
         pass
 
     @abstractmethod
-    def get_problem_elements(self) -> List:
+    def get_problem_elements(self) -> List[WebElement]:
         """
         문제 리스트 엘리먼트 가져오기
         """
         pass
 
     @abstractmethod
-    def parse_problem_from_problem_element(self, item) -> ProblemItem | None:
+    def parse_problem_from_problem_element(self, item: WebElement) -> ProblemItem | None:
         """
         아이템 엘러먼트로부터
         문제 데이터 파싱하기
         """
         pass
 
-    def get_list(self, *args, **kwargs) -> List[ProblemItem]:
+    def get_list(self) -> List[ProblemItem]:
         self.access_to_problem_list()
         items = self.get_problem_elements()
         problems: List[ProblemItem] = []
         for item in items:
             try:
-                problems.append(self.parse_problem_from_problem_element(item))
+                problem = self.parse_problem_from_problem_element(item)
             except NoSuchElementException:
                 continue
+            else:
+                if problem:
+                    problems.append(problem)
         return problems
