@@ -2,6 +2,10 @@ class PsDeliveryException(Exception):
     pass
 
 
+class RequestFailed(PsDeliveryException):
+    pass
+
+
 class RequestTimeout(PsDeliveryException):
     pass
 

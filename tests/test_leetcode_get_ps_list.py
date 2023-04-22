@@ -1,12 +1,11 @@
 import unittest
-import time
 
-from psdelivery.crawlers.baekjoon import BaekjoonCrawler
+from psdelivery.crawlers.leetcode import LeetcodeCrawler
 
-class TestBaekjoonGetPsList(unittest.TestCase):
+class TestLeetcodeGetPsList(unittest.TestCase):
     
     def test_aaa(self):
-        crawler = BaekjoonCrawler()
+        crawler = LeetcodeCrawler()
         crawler.open()
         crawler.open_web()
         res = crawler.get_list()

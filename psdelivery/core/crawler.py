@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 import time
 from abc import ABCMeta, abstractmethod
 
@@ -8,48 +8,36 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
 from webdriver_manager.chrome import ChromeDriverManager
 
+from psdelivery.core.engine import CrawlingEngine
 from psdelivery.core.option import DefaultCrawlerOption, CrawlerOption
 from psdelivery.core.item import ProblemItem
 from psdelivery.exc import WebdriverIsNotLoaded
 
 
 class ProblemCrawler(metaclass=ABCMeta):
-    option_generator: CrawlerOption = DefaultCrawlerOption()
-    driver: webdriver.Chrome | None = None
     base_url: str
+    engine: CrawlingEngine
 
-    def open_driver(self):
-        chrome_driver_path = ChromeDriverManager().install()
-        self.driver = webdriver.Chrome(service=Service(chrome_driver_path),
-                                       options=self.option_generator.generate())
-        
+    def open(self) -> None:
+        self.engine.open()
+
+    def close(self) -> None:
+        self.engine.close()
+
+    def __del__(self) -> None:
+        self.engine.close()
+
     def open_web(self):
-        if self.driver:
-            self.driver.get(self.base_url)
-            time.sleep(1)
-        else:
-            raise WebdriverIsNotLoaded('Webdriver is not loaded')
-    
-    def close_web(self):
-        if self.driver:
-            self.driver.close()
-
-    def close_driver(self):
-        if self.driver:
-            self.driver.quit()
-
-    def __del__(self):
-        if self.driver:
-            self.driver.quit()
+        self.engine.open_web(self.base_url)
 
     @abstractmethod
     def access_to_problem_list(self) -> None: ...
 
     @abstractmethod
-    def get_problem_elements(self) -> List[WebElement]: ...
+    def get_problem_elements(self) -> List[Any]: ...
 
     @abstractmethod
-    def parse_problem_from_problem_element(self, item: WebElement) -> ProblemItem | None: ...
+    def parse_problem_from_problem_element(self, item: Any) -> ProblemItem | None: ...
 
     def get_list(self) -> List[ProblemItem]:
         self.access_to_problem_list()
