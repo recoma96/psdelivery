@@ -67,9 +67,9 @@ class BaekjoonCrawler(ProblemCrawler):
         difficulty = self.convert_difficulty_to_int(self.parse_web_difficulty(item))
         title = self.parse_title(item)
         website = self.parse_website(item)
-        tags = self.parse_algorithm_tags(item)
+        #tags = self.parse_algorithm_tags(item)
         
         if not difficulty:
             return None
 
-        return BaekjoonProblemItem(seq, title, website, difficulty, tags)
+        return BaekjoonProblemItem(seq, title, website, difficulty)

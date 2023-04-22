@@ -43,26 +43,13 @@ class ProblemCrawler(metaclass=ABCMeta):
             self.driver.quit()
 
     @abstractmethod
-    def access_to_problem_list(self):
-        """
-        문제 리스트를 가져오기 전의 작업
-        """
-        pass
+    def access_to_problem_list(self) -> None: ...
 
     @abstractmethod
-    def get_problem_elements(self) -> List[WebElement]:
-        """
-        문제 리스트 엘리먼트 가져오기
-        """
-        pass
+    def get_problem_elements(self) -> List[WebElement]: ...
 
     @abstractmethod
-    def parse_problem_from_problem_element(self, item: WebElement) -> ProblemItem | None:
-        """
-        아이템 엘러먼트로부터
-        문제 데이터 파싱하기
-        """
-        pass
+    def parse_problem_from_problem_element(self, item: WebElement) -> ProblemItem | None: ...
 
     def get_list(self) -> List[ProblemItem]:
         self.access_to_problem_list()

@@ -13,3 +13,4 @@ class TestBaekjoonGetPsList(unittest.TestCase):
         for r in res:
             print(r.__dict__())
         crawler.close_driver()
+    
