@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from typing import final
 
 from selenium import webdriver
 
@@ -8,7 +9,8 @@ class CrawlerOption(metaclass=ABCMeta):
     def generate(self) -> webdriver.ChromeOptions:
         pass
 
-class DefaultCrawlerOption(CrawlerOption):
+@final
+class DefaultSeleniumCrawlerOption(CrawlerOption):
     def generate(self) -> webdriver.ChromeOptions:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless=new')

@@ -1,18 +1,15 @@
-from typing import Any
+from typing import Any, final
 from abc import ABCMeta, abstractmethod
 import time
 
 import requests
 from requests import Response
-import bs4
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.remote.webelement import WebElement
 from webdriver_manager.chrome import ChromeDriverManager
 
-from psdelivery.core.option import CrawlerOption, DefaultCrawlerOption
+from psdelivery.core.option import CrawlerOption, DefaultSeleniumCrawlerOption
 from psdelivery.exc import RequestTimeout, RequestFailed, WebdriverIsNotLoaded
 
 
@@ -28,10 +25,12 @@ class CrawlingEngine(metaclass=ABCMeta):
     @abstractmethod
     def open_web(self, url: str) -> None: ...
 
+    @final
     def __call__(self) -> Any | None:
         return self.engine
 
 
+@final
 class BeautifulSoupEngine(CrawlingEngine):
     engine: BeautifulSoup | None = None
 
@@ -50,10 +49,10 @@ class BeautifulSoupEngine(CrawlingEngine):
             raise RequestFailed('Request failed to web.')
 
 
-
+@final
 class SeleniumEngine(CrawlingEngine):
     engine: webdriver.Chrome
-    option_generator: CrawlerOption = DefaultCrawlerOption()
+    option_generator: CrawlerOption = DefaultSeleniumCrawlerOption()
 
     def open(self) -> None:
         self.engine = webdriver.Chrome(

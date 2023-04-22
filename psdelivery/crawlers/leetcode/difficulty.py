@@ -1,5 +1,6 @@
 from psdelivery.core.difficulty import ProblemDifficultyConverter
 
+
 class LeetcodeProblemDifficultyConverter(ProblemDifficultyConverter):
     beginner = (0, 0)
     easy = (1, 1)

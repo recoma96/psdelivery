@@ -1,7 +1,6 @@
 from typing import List
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webelement import WebElement
 from psdelivery.core.engine import SeleniumEngine
 
@@ -37,14 +36,14 @@ class BaekjoonProblemListItemParser:
 
 
 class BaekjoonCrawler(ProblemCrawler):
-    base_url = 'https://solved.ac/search'
+    base_url = 'https://solved.ac/search?query=*'
     engine = SeleniumEngine()
     
+    def generate_url_by_page_index(self, page: int = 1) -> str:
+        return self.base_url + '&page=' + str(page)
+
     def access_to_problem_list(self):
-        input_form = self.engine().find_element(By.CLASS_NAME, 'css-1ep4btc') \
-                                .find_element(By.TAG_NAME, 'input')
-        input_form.send_keys('*')
-        input_form.send_keys(Keys.ENTER)
+        self.engine().refresh()
         self.engine().implicitly_wait(3)
 
     def get_problem_elements(self) -> List[WebElement]:
@@ -62,7 +61,7 @@ class BaekjoonCrawler(ProblemCrawler):
 
     def parse_problem_from_problem_element(
             self, item: WebElement) -> BaekjoonProblemItem | None:
-        parser: BaekjoonProblemListItemParser = BaekjoonProblemListItemParser(item)
+        parser = BaekjoonProblemListItemParser(item)
 
         seq = parser.seq
         difficulty = self.convert_difficulty_to_int(parser.web_difficulty)

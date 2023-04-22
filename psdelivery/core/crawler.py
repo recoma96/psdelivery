@@ -1,34 +1,37 @@
-from typing import List, Any
-import time
+from typing import List, Any, final
 from abc import ABCMeta, abstractmethod
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.remote.webelement import WebElement
-from webdriver_manager.chrome import ChromeDriverManager
 
+from psdelivery.utils.type_checker import must_be_type
 from psdelivery.core.engine import CrawlingEngine
-from psdelivery.core.option import DefaultCrawlerOption, CrawlerOption
 from psdelivery.core.item import ProblemItem
-from psdelivery.exc import WebdriverIsNotLoaded
 
 
 class ProblemCrawler(metaclass=ABCMeta):
     base_url: str
     engine: CrawlingEngine
 
+    @final
     def open(self) -> None:
         self.engine.open()
 
+    @final
     def close(self) -> None:
         self.engine.close()
 
+    @final
     def __del__(self) -> None:
-        self.engine.close()
+        self.close()
 
-    def open_web(self):
-        self.engine.open_web(self.base_url)
+    @final
+    def open_web(self, url: str = None):
+        if not url:
+            url = self.base_url
+        self.engine.open_web(url)
+
+    @abstractmethod
+    def generate_url_by_page_index(self, page: int = 1) -> str: ...
 
     @abstractmethod
     def access_to_problem_list(self) -> None: ...
@@ -39,7 +42,13 @@ class ProblemCrawler(metaclass=ABCMeta):
     @abstractmethod
     def parse_problem_from_problem_element(self, item: Any) -> ProblemItem | None: ...
 
-    def get_list(self) -> List[ProblemItem]:
+    @final
+    @must_be_type('page', int)
+    def get_list(self, page: int = 1) -> List[ProblemItem]:
+        self.target_url: str = self.generate_url_by_page_index(page)
+        
+        self.open()
+        self.open_web(self.target_url)
         self.access_to_problem_list()
         items = self.get_problem_elements()
         problems: List[ProblemItem] = []
@@ -51,4 +60,5 @@ class ProblemCrawler(metaclass=ABCMeta):
             else:
                 if problem:
                     problems.append(problem)
+        self.close()
         return problems

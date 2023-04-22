@@ -1,36 +1,44 @@
 from typing import List
-
-import bs4
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.common.by import By
 
 from psdelivery.core.crawler import ProblemCrawler
-from psdelivery.core.engine import BeautifulSoupEngine
+from psdelivery.core.engine import SeleniumEngine
 from psdelivery.crawlers.leetcode.item import LeetcodeProblemItem
+
 
 class LeetcodeCrawler(ProblemCrawler):
     base_url = 'https://leetcode.com/problemset/all'
-    engine = BeautifulSoupEngine()
+    engine = SeleniumEngine()
+    difficulty_str_to_int = {'Easy': 1,  'Medium': 2, 'Hard': 3}
+
+    def generate_url_by_page_index(self, page: int = 1) -> str:
+        return self.base_url + '/?page=' + str(page)
 
     def access_to_problem_list(self) -> None: ...
     
-    def get_problem_elements(self) -> List[bs4.element.Tag]:
-        problem_table: bs4.element.Tag = \
-            self.engine().find('div', attrs={'role': 'rowgroup'})
-        return [p for p in problem_table.children]
+    def get_problem_elements(self) -> List[WebElement]:
+        return self.engine() \
+                .find_element(By.XPATH, '//div[@role = "rowgroup"]') \
+                .find_elements(By.XPATH, './/div[@role="row"]')
     
     def parse_problem_from_problem_element(
-            self, item: bs4.element.Tag) -> LeetcodeProblemItem | None:
+            self, item: WebElement) -> LeetcodeProblemItem | None:
         title, difficulty, seq, website = None, None, None, None
-        for i, attr in enumerate(item.children):
+        
+        attr_iter = enumerate(
+            item.find_elements(By.XPATH, './/div[@role="cell"]'))
+        for i, attr in attr_iter:
             if i == 1:
-                title_raw = attr.find('div', 'truncate').a.text
+                title_raw: str = attr.find_element(
+                    By.XPATH, './/div[@class="truncate"]/a').text
+                
                 title = '.'.join(title_raw.split('.')[1:])[1:]
-
-                splited_title = title.lower().split()
-                seq = '-'.join(splited_title)
-
+                seq = title.lower().replace(' ', '-')
                 website = f'https://leetcode.com/problems/{seq}/'
-            
-            elif i == 5:
-                difficulty = {'Easy': 1, 'Medium': 2, 'Hard': 3}[attr.span.text]
+
+            elif i == 4:
+                raw_difficulty = attr.find_element(By.TAG_NAME, 'span').text
+                difficulty = self.difficulty_str_to_int[raw_difficulty]
 
         return LeetcodeProblemItem(seq, title, website, difficulty)

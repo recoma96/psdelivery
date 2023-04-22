@@ -1,11 +1,11 @@
-from typing import Tuple
+from typing import Tuple, final
 from enum import Enum
 from abc import ABCMeta
 
 
 WebsiteDifficultyRange = Tuple[float, float]
 
-
+@final
 class ProblemDifficulty(Enum):
     BEGINNER = 0
     EASY = 1
@@ -14,7 +14,6 @@ class ProblemDifficulty(Enum):
     EXTREME = 4
     NOT_RATED = -1
 
-
 class ProblemDifficultyConverter(metaclass=ABCMeta):
     beginner: WebsiteDifficultyRange
     easy: WebsiteDifficultyRange
@@ -22,6 +21,7 @@ class ProblemDifficultyConverter(metaclass=ABCMeta):
     hard: WebsiteDifficultyRange
     extreme: WebsiteDifficultyRange
 
+    @final
     @staticmethod
     def is_difficulty( 
             website_difficulty: float,           
@@ -29,6 +29,7 @@ class ProblemDifficultyConverter(metaclass=ABCMeta):
     ) -> bool:
         return difficulty_range[0] <= website_difficulty <= difficulty_range[1]
 
+    @final
     @classmethod
     def convert(cls, website_difficulty: float) -> ProblemDifficulty:
         if cls.is_difficulty(website_difficulty, cls.beginner):

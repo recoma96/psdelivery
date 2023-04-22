@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from typing import Type, List
+from typing import Type
 
 from psdelivery.core.difficulty import ProblemDifficulty, ProblemDifficultyConverter
 
