@@ -16,8 +16,16 @@ class LeetcodeCrawler(ProblemCrawler):
         return self.base_url + '/?page=' + str(page)
 
     def access_to_problem_list(self) -> None: ...
-    
-    def get_problem_elements(self) -> List[WebElement]:
+
+    def get_problem_elements(self, page: int = 1) -> List[WebElement]:
+        maxinum_page = int(
+            self.engine() \
+                .find_element(By.XPATH, '//nav[@role = "navigation"]') \
+                .find_elements(By.TAG_NAME, 'button')[-2].text
+        )
+        if page > maxinum_page:
+            return []
+
         return self.engine() \
                 .find_element(By.XPATH, '//div[@role = "rowgroup"]') \
                 .find_elements(By.XPATH, './/div[@role="row"]')

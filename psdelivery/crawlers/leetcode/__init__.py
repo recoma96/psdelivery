@@ -1,1 +1,1 @@
-from psdelivery.crawlers.leetcode.crawler import LeetcodeCrawler
+from psdelivery.crawlers.leetcode.crawler import LeetcodeCrawler as LeetcodeCrawler

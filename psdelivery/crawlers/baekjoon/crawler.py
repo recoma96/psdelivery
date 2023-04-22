@@ -42,11 +42,11 @@ class BaekjoonCrawler(ProblemCrawler):
     def generate_url_by_page_index(self, page: int = 1) -> str:
         return self.base_url + '&page=' + str(page)
 
-    def access_to_problem_list(self):
+    def access_to_problem_list(self, page: int = 1):
         self.engine().refresh()
         self.engine().implicitly_wait(3)
 
-    def get_problem_elements(self) -> List[WebElement]:
+    def get_problem_elements(self, page: int = 1) -> List[WebElement]:
         items = self.engine().find_elements(By.CLASS_NAME, 'css-1ojb0xa')
         return items
     

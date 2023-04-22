@@ -34,7 +34,7 @@ class ProblemCrawler(metaclass=ABCMeta):
     def generate_url_by_page_index(self, page: int = 1) -> str: ...
 
     @abstractmethod
-    def access_to_problem_list(self) -> None: ...
+    def access_to_problem_list(self, page: int = 1) -> None: ...
 
     @abstractmethod
     def get_problem_elements(self) -> List[Any]: ...
@@ -46,11 +46,13 @@ class ProblemCrawler(metaclass=ABCMeta):
     @must_be_type('page', int)
     def get_list(self, page: int = 1) -> List[ProblemItem]:
         self.target_url: str = self.generate_url_by_page_index(page)
-        
+        if page < 0:
+            raise ValueError('page is must not be under 0.')
+
         self.open()
         self.open_web(self.target_url)
         self.access_to_problem_list()
-        items = self.get_problem_elements()
+        items = self.get_problem_elements(page)
         problems: List[ProblemItem] = []
         for item in items:
             try:
