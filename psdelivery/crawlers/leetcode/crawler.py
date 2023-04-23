@@ -1,3 +1,4 @@
+import time
 from typing import List
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
@@ -15,7 +16,8 @@ class LeetcodeCrawler(ProblemCrawler):
     def generate_url_by_page_index(self, page: int = 1) -> str:
         return self.base_url + '/?page=' + str(page)
 
-    def access_to_problem_list(self) -> None: ...
+    def access_to_problem_list(self) -> None:
+        time.sleep(2)
 
     def get_problem_elements(self, page: int = 1) -> List[WebElement]:
         maxinum_page = int(
