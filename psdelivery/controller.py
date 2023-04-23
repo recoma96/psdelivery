@@ -1,4 +1,4 @@
-from typing import Type, List
+from typing import Type, List, Dict, Any
 
 from psdelivery.core.crawler import ProblemCrawler
 from psdelivery.core.item import ProblemItem
@@ -20,5 +20,10 @@ class PsDelivery:
             raise ValueError(f'{topic} crawler is not exists.')
         self.crawler = crawler()
 
-    def get_list_by_single_page(self, page: int) -> List[ProblemItem]:
-        return self.crawler.get_list(page=page)
+    def get_list_by_single_page(
+            self, page: int,
+            serialize: bool = False) -> List[ProblemItem] | List[Dict[str, Any]]:
+        res: List[ProblemItem] = self.crawler.get_list(page=page)
+        if serialize:
+            return [r.__dict__ for r in res]
+        return res

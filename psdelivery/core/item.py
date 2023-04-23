@@ -21,6 +21,7 @@ class ProblemItem(metaclass=ABCMeta):
         self.problem_site = problem_site
         self.difficulty = self.difficulty_converter.convert(website_difficulty)
 
+    @property
     def __dict__(self):
         return {
             'seq': self.seq,
