@@ -58,7 +58,6 @@ class ProblemCrawler(metaclass=ABCMeta):
         for item in items:
             try:
                 problem = self.parse_problem_from_problem_element(item)
-                time.sleep(0.5)
             except NoSuchElementException:
                 continue
             else:
