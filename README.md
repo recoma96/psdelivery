@@ -1,10 +1,10 @@
 # 📦 psdelivery
 
-![Test](https://github.com/team-angeline/psdelivery/actions/workflows/dev-test.yml/badge.svg)
-![CI](https://github.com/team-angeline/psdelivery/actions/workflows/ci.yml/badge.svg)
+[![Test](https://github.com/team-angeline/psdelivery/actions/workflows/dev-test.yml/badge.svg)](https://github.com/team-angeline/psdelivery/actions/workflows/dev-test.yml)
+[![CI](https://github.com/team-angeline/psdelivery/actions/workflows/ci.yml/badge.svg)](https://github.com/team-angeline/psdelivery/actions/workflows/ci.yml)
 ![GitHub](https://img.shields.io/github/license/team-angeline/psdelivery)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psdelivery?logo=python&logoColor=white)
-![PyPI](https://img.shields.io/pypi/v/psdelivery?label=pypi%20package&logo=pypi&logoColor=white)
+[![PyPI](https://img.shields.io/pypi/v/psdelivery?label=pypi%20package&logo=pypi&logoColor=white)](https://pypi.org/project/psdelivery)
 [![codecov](https://codecov.io/gh/team-angeline/psdelivery/branch/main/graph/badge.svg?token=LFC7Z4PGCT)](https://codecov.io/gh/team-angeline/psdelivery)
 
 **NOTE**: 현재 배포전 개발중 입니다.
