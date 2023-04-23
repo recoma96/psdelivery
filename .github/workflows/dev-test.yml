@@ -1,4 +1,4 @@
-name: Test in Devlop Environment
+name: Test
 on:
   push:
     branches:

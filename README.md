@@ -1,7 +1,9 @@
 # 📦 psdelivery
 
+![Test](https://github.com/team-angeline/psdelivery/actions/workflows/dev-test.yml/badge.svg)
 ![GitHub](https://img.shields.io/github/license/team-angeline/psdelivery)
 ![python](https://img.shields.io/badge/python-3.10%20%7C%203.11-blue)
+[![codecov](https://codecov.io/gh/team-angeline/psdelivery/branch/main/graph/badge.svg?token=LFC7Z4PGCT)](https://codecov.io/gh/team-angeline/psdelivery)
 
 **NOTE**: 현재 배포전 개발중 입니다.
 
