@@ -1,18 +1,20 @@
 [tool.poetry]
 name = "psdelivery"
-version = "0.0.1"
-description = ""
+version = "0.1.0"
+description = "The simple crawler about algorithm problem service website"
 authors = ["recoma <seokbong60@gmail.com>"]
 readme = "README.md"
+license = "GNU-v3"
 
 [tool.poetry.dependencies]
 python = "^3.10"
 beautifulsoup4 = "^4.12.2"
-multipledispatch = "^0.6.0"
 requests = "^2.28.2"
 selenium = "^4.9.0"
 webdriver-manager = "^3.8.6"
 
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.2.3"
 
 [build-system]
 requires = ["poetry-core"]
