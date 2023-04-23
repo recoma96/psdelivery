@@ -7,7 +7,9 @@
 [![PyPI](https://img.shields.io/pypi/v/psdelivery?label=pypi%20package&logo=pypi&logoColor=white)](https://pypi.org/project/psdelivery)
 [![codecov](https://codecov.io/gh/team-angeline/psdelivery/branch/main/graph/badge.svg?token=LFC7Z4PGCT)](https://codecov.io/gh/team-angeline/psdelivery)
 
-**NOTE**: 현재 배포전 개발중 입니다.
+```shell
+pip install psdelivery
+```
 
 ## Introduction 
 여러 코딩 사이트의 코딩 문제들을 크롤링하는 라이브러리 입니다. 초기 버전이라 기본 수준의 기능만 지원하지만. 차후 더 많은 기능들을 추가할 예정입니다. 왜냐면 재가 제 메인 프로젝트에 쓸 거니깐요.
@@ -35,8 +37,7 @@
     * Debian계열의 경우, bin디렉토리에 크롬을 설치하는 Shell Script가 있습니다.
 * 파이썬 버전은 반드시 ```3.10``` 이상이어야 합니다.
 
-## 💽 How To Install
-
+## 💽 How To Install For Developer
 크롬과 파이썬이 설치되어있다는 가정 하에 설명합니다.
 
 1. requirements.txt를 통해 패키지를 설치합니다.
