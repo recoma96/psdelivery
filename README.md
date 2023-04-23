@@ -78,10 +78,12 @@ crawler = PsDelivery(topic='leetcode')
 
 """
 특정 페이지의 문제 리스트를 가져옵니다.
-
-page: 가져올 페이지 쪽수를 입력합니다. 반드시 1 이상이어야 합니다.
-
-serialize: 일반적인 리턴된 리스트의 요소는 ProblemItem이라는 객체 입니다. serialize=True로 설정하면 ProblemItem을 Dict 형태로 직렬화 합니다. Default값은 False 입니다.
+page:
+    가져올 페이지 쪽수를 입력합니다. 반드시 1 이상이어야 합니다.
+serialize:
+    일반적인 리턴된 리스트의 요소는 ProblemItem이라는 객체 입니다. 
+    serialize=True로 설정하면 ProblemItem을 Dict 형태로 직렬화 합니다. 
+    Default값은 False 입니다.
 """
 result = crwaler.get_list_by_single_page(page=1)
 """
