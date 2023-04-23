@@ -20,7 +20,7 @@ jobs:
         run: sh bin/install_dependency.sh
       - name: Install Poetry
         run: |
-          curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+          curl -sSL https://install.python-poetry.org | python -
           source $HOME/.poetry/env
       - name: Install Python Dependency
         run: |
