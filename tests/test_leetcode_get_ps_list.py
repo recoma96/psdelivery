@@ -18,5 +18,5 @@ class TestLeetcodeGetPsList(unittest.TestCase):
             self.crawler.get_list_by_single_page('hello world')
 
     def test_success(self):
-        res = self.crawler.get_list_by_single_page(1)
+        res = self.crawler.get_list_by_single_page(2)
         self.assertEqual(50, len(res))

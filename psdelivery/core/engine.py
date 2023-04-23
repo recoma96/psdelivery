@@ -66,6 +66,6 @@ class SeleniumEngine(CrawlingEngine):
     def open_web(self, url: str) -> None:
         if self.engine:
             self.engine.get(url)
-            time.sleep(1)
+            time.sleep(2)
         else:
             raise WebdriverIsNotLoaded('Selenium webdriver is not loaded.')
