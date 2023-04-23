@@ -4,7 +4,20 @@ version = "0.1.0"
 description = "The simple crawler about algorithm problem service website"
 authors = ["recoma <seokbong60@gmail.com>"]
 readme = "README.md"
-license = "GNU-v3"
+license = "GPL-3.0-only"
+repository = "https://github.com/team-angeline/psdelivery"
+keywords = ["crwaler", "problem-solving"]
+classifiers = [
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    'Intended Audience :: Developers',
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -15,6 +28,7 @@ webdriver-manager = "^3.8.6"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.2.3"
+codecov = "^2.1.13"
 
 [build-system]
 requires = ["poetry-core"]
