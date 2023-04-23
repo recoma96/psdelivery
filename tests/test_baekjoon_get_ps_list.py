@@ -20,5 +20,5 @@ class TestBaekjoonGetPsList(unittest.TestCase):
 
     def test_success(self):
         crawler = PsDelivery('solved.ac')
-        res = crawler.get_list_by_single_page(10)
+        res = crawler.get_list_by_single_page(1)
         self.assertEqual(50, len(res))
