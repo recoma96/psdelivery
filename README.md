@@ -59,7 +59,7 @@ python -m psdelivery getlist -t <topic> -sp <page index> -o <output json file>
     * -o(--output): 코딩문제 데이터를 저장할 파일 루트를 명시합니다.
 * **example**
     ```
-    python -m delivery getlist -t baekjoon -sp 3 -o output.json
+    python -m psdelivery getlist -t baekjoon -sp 3 -o output.json
     ```
 
 ### As Python Module
