@@ -25,7 +25,7 @@ jobs:
       - name: Install Poetry
         run: |
           (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
-          $env:Path += ';' + $env.APPDATA + '\pypoetry\venv\Scripts'
+          $env:Path += ';' + $env:APPDATA + '\pypoetry\venv\Scripts'
           poetry --version
       
       - name: Install Python Dependency
