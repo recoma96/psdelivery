@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "psdelivery"
-version = "0.1.1"
+version = "0.1.2"
 description = "The simple crawler about algorithm problem service website"
 authors = ["recoma <seokbong60@gmail.com>"]
 readme = "README.md"

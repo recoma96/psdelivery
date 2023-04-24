@@ -18,7 +18,11 @@ class TestBaekjoonGetPsList(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.crawler.get_list_by_single_page('hello world')
 
-    def test_success(self):
+    def test_success_with_serialize(self):
         crawler = PsDelivery('solved.ac')
-        res = crawler.get_list_by_single_page(2)
+        res = crawler.get_list_by_single_page(1, True)
         self.assertEqual(50, len(res))
+
+    def test_exclude_non_rated_problem(self):
+        res = self.crawler.get_list_by_single_page(523)
+        self.assertEqual(47, len(res))

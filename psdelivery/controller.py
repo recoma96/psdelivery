@@ -22,8 +22,10 @@ class PsDelivery:
 
     def get_list_by_single_page(
             self, page: int,
-            serialize: bool = False) -> List[ProblemItem] | List[Dict[str, Any]]:
-        res: List[ProblemItem] = self.crawler.get_list(page=page)
+            serialize: bool = False,
+            logging: bool = False) -> List[ProblemItem] | List[Dict[str, Any]]:
+        res: List[ProblemItem] = \
+            self.crawler.get_list(page=page, logging=logging)
         if serialize:
             return [r.__dict__ for r in res]
         return res
