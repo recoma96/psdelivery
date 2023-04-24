@@ -1,4 +1,4 @@
-name: Test In Ubuntu
+name: Ubuntu
 on:
   pull_request:
     branches:

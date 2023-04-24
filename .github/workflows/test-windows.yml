@@ -1,4 +1,4 @@
-name: Test In Windows
+name: Windows
 on:
   pull_request:
     branches:
@@ -30,11 +30,13 @@ jobs:
       
       - name: Install Python Dependency
         run: |
+          $env:Path += ';' + $env:APPDATA + '\pypoetry\venv\Scripts'
           poetry install
           poetry install --with=dev
       
       - name: Test
         run: |
+          $env:Path += ';' + $env:APPDATA + '\pypoetry\venv\Scripts'
           poetry run python -m coverage run -m unittest
           poetry run python -m coverage xml
       
