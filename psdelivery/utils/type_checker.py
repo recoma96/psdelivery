@@ -15,7 +15,7 @@ def must_be_type(arg_name: str, arg_type: Type | UnionType):
                 valid_types = [arg_type]
             elif isinstance(arg_type, UnionType):
                 valid_types = list(arg_type.__args__)
-
+            
             if arg_name not in kwargs:
                 raise ValueError(f'Argment {arg_name} is not exists.')
             arg_val: Any = kwargs[arg_name]

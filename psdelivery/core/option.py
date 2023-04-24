@@ -6,8 +6,7 @@ from selenium import webdriver
 
 class CrawlerOption(metaclass=ABCMeta):
     @abstractmethod
-    def generate(self) -> webdriver.ChromeOptions:
-        pass
+    def generate(self) -> webdriver.ChromeOptions: ...
 
 @final
 class DefaultSeleniumCrawlerOption(CrawlerOption):
