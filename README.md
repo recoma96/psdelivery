@@ -1,6 +1,7 @@
 # 📦 psdelivery
 
-[![Test](https://github.com/team-angeline/psdelivery/actions/workflows/dev-test.yml/badge.svg)](https://github.com/team-angeline/psdelivery/actions/workflows/dev-test.yml)
+[![Ubuntu](https://github.com/team-angeline/psdelivery/actions/workflows/test-ubuntu.yml/badge.svg)](https://github.com/team-angeline/psdelivery/actions/workflows/test-ubuntu.yml)
+[![Windows](https://github.com/team-angeline/psdelivery/actions/workflows/test-windows.yml/badge.svg)](https://github.com/team-angeline/psdelivery/actions/workflows/test-windows.yml)
 [![CI](https://github.com/team-angeline/psdelivery/actions/workflows/ci.yml/badge.svg)](https://github.com/team-angeline/psdelivery/actions/workflows/ci.yml)
 ![GitHub](https://img.shields.io/github/license/team-angeline/psdelivery)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psdelivery?logo=python&logoColor=white)

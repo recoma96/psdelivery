@@ -1,8 +1,5 @@
-name: Test
+name: Ubuntu
 on:
-  push:
-    branches:
-      - develop
   pull_request:
     branches:
       - main
