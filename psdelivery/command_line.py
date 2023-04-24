@@ -20,7 +20,7 @@ class CommandLineAction:
         if single_page is not None:
             data = json.dumps(
                 PsDelivery(topic).get_list_by_single_page(
-                    single_page, True),
+                    page=single_page, serialize=True, logging=True),
                 ensure_ascii=False,
                 sort_keys=True,
                 indent=4)
