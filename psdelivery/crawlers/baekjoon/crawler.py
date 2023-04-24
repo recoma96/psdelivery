@@ -21,8 +21,9 @@ class BaekjoonProblemListItemParser:
 
     @property
     def web_difficulty(self) -> str:
-        return self.item.find_element(By.CLASS_NAME, 'css-1raije9') \
-                        .find_element(By.TAG_NAME, 'span').text
+        img_url = self.item.find_element(By.CLASS_NAME, 'css-1raije9') \
+                        .find_element(By.TAG_NAME, 'img').get_attribute('src')
+        return img_url.split('/')[-1].split('.')[0]
 
     @property
     def title(self) -> str:

@@ -17,6 +17,6 @@ class TestLeetcodeGetPsList(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.crawler.get_list_by_single_page('hello world')
 
-    def test_success(self):
-        res = self.crawler.get_list_by_single_page(2)
+    def test_success_with_serialize(self):
+        res = self.crawler.get_list_by_single_page(2, True)
         self.assertEqual(50, len(res))
