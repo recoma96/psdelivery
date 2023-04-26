@@ -17,18 +17,19 @@ class CommandLineAction:
     def get_problem_list(topic: str, single_page: int | None, output: str):
         data: str | None = None
 
+        print(f'Start Crawling: {topic}, page: {single_page}')
+        
         if single_page is not None:
             data = json.dumps(
-                PsDelivery(topic).get_list_by_single_page(
-                    page=single_page, serialize=True, logging=True),
-                ensure_ascii=False,
-                sort_keys=True,
-                indent=4)
+                PsDelivery(topic) \
+                    .get_list_by_single_page(page=single_page, serialize=True),
+                ensure_ascii=False, sort_keys=True, indent=4)
 
         if data is not None:
             with open(output, 'wt') as f:
                 f.write(data)
 
+        print('Complete')
 
 class CommandLineUtility:
     root_parser: argparse.ArgumentParser
